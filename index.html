@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const choice = ['Rock', 'Paper', 'Scissors'];
+        let num1,num2;
+
+        function randomNum(num1,num2) {
+            let res = Math.floor(Math.random(num1) * num2);
+            return res;
+        }
+
+        function getComputerChoice(arr) {
+            let cpu = arr[randomNum(0,arr.length)];
+            console.log(cpu);
+            return cpu;
+        }
+        let playerPts = 0;
+        let computerPts = 0;
+
+        function rpsGame(player, opponent) {
+            let game;
+
+            if (player.toUpperCase() == opponent.toUpperCase()) {
+                game = alert("It's a draw!");
+            } else if (player.toLowerCase() == "rock" && opponent.toLowerCase() == "paper") {
+                game = alert("You lose, paper beats rock");
+                computerPts++;
+            } else if (player.toLowerCase() == "scissor" && opponent.toLowerCase() == "rock") {
+                game = alert("You lose, rock beats scissor");
+                computerPts++;
+            } else if (player.toLowerCase() == "paper" && opponent.toLowerCase() == "scissor") {
+                game = alert("You lose, scissor beats paper");
+                computerPts++;
+            } 
+              else if (player.toLowerCase() == "rock" && opponent.toLowerCase() == "scissor") {
+                game = alert("You win, rock beats scissor");
+                playerPts++;
+            } else if (player.toLowerCase() == "paper" && opponent.toLowerCase() == "rock") {
+                game = alert("You win, paper beats rock");
+                playerPts++;
+            } else if (player.toLowerCase() == "scissor" && opponent.toLowerCase() == "paper") {
+                game = alert("You win, scissor beats paper");
+                playerPts++;
+            } 
+            return game;
+        }
+        function bestOfFive() {
+            for (let i = 0; i < 5; i++) {
+                let playerChoice = prompt("Select between rock, paper or scissors. ");
+                let cpuChoice = getComputerChoice(choice);
+                rpsGame(playerChoice,cpuChoice);
+
+            }
+        }
+
+        
+
+        bestOfFive();
+        console.log("After five games, the score is: Player " + playerPts + " - " + computerPts + " Computer");
+        if(playerPts == 3 || playerPts > computerPts)  {
+                    console.log("You won the game! Congratulations!");
+                } else if (computerPts == 3 || computerPts > playerPts) {
+                    console.log("You lost, better luck next time!");
+                }
+    </script>
+</body>
+</html>
