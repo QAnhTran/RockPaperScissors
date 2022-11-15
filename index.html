@@ -32,42 +32,48 @@
             } else if (player.toLowerCase() == "rock" && opponent.toLowerCase() == "paper") {
                 game = alert("You lose, paper beats rock");
                 computerPts++;
-            } else if (player.toLowerCase() == "scissor" && opponent.toLowerCase() == "rock") {
+            } else if (player.toLowerCase() == "scissors" && opponent.toLowerCase() == "rock") {
                 game = alert("You lose, rock beats scissor");
                 computerPts++;
-            } else if (player.toLowerCase() == "paper" && opponent.toLowerCase() == "scissor") {
+            } else if (player.toLowerCase() == "paper" && opponent.toLowerCase() == "scissors") {
                 game = alert("You lose, scissor beats paper");
                 computerPts++;
             } 
-              else if (player.toLowerCase() == "rock" && opponent.toLowerCase() == "scissor") {
+              else if (player.toLowerCase() == "rock" && opponent.toLowerCase() == "scissors") {
                 game = alert("You win, rock beats scissor");
                 playerPts++;
             } else if (player.toLowerCase() == "paper" && opponent.toLowerCase() == "rock") {
                 game = alert("You win, paper beats rock");
                 playerPts++;
-            } else if (player.toLowerCase() == "scissor" && opponent.toLowerCase() == "paper") {
+            } else if (player.toLowerCase() == "scissors" && opponent.toLowerCase() == "paper") {
                 game = alert("You win, scissor beats paper");
                 playerPts++;
             } 
             return game;
         }
+
+        let i;
         function bestOfFive() {
-            for (let i = 0; i < 5; i++) {
+            for (i = 0; i < 5; i++) {
                 let playerChoice = prompt("Select between rock, paper or scissors. ");
                 let cpuChoice = getComputerChoice(choice);
                 rpsGame(playerChoice,cpuChoice);
-
+                if (playerPts == 3 || computerPts == 3) {
+                    break;
+                }
             }
         }
 
         
 
         bestOfFive();
-        console.log("After five games, the score is: Player " + playerPts + " - " + computerPts + " Computer");
+        console.log("After " + i + " games, the score is: Player " + playerPts + " - " + computerPts + " Computer");
         if(playerPts == 3 || playerPts > computerPts)  {
                     console.log("You won the game! Congratulations!");
                 } else if (computerPts == 3 || computerPts > playerPts) {
                     console.log("You lost, better luck next time!");
+                } else {
+                    console.log("Draw game!");
                 }
     </script>
 </body>
