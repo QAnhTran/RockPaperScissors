@@ -1,1 +1,0 @@
-alert("this is a message from the external js file")
