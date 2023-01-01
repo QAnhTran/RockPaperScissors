@@ -7,9 +7,25 @@
     <title>Document</title>
 </head>
 <body>
+    <button id="rock" name="Rock">Rock</button>
+    <button id="paper" name="Paper">Paper</button>
+    <button id="scissors" name="Scissors">Scissors</button>
     <script>
         const choice = ['Rock', 'Paper', 'Scissors'];
         let num1,num2;
+        const rock = document.querySelector('#rock');
+        const paper = document.querySelector('#paper');
+        const scissor = document.querySelector('#scissors');
+
+        rock.addEventListener('click', () => {
+            rpsGame(document.getElementById("rock").name, getComputerChoice(choice)); //confirm user choice while also letting the cpu choose its own
+        });
+        paper.addEventListener('click', () => {
+            rpsGame(document.getElementById("paper").name, getComputerChoice(choice)); 
+        });
+        scissor.addEventListener('click', () => {
+            rpsGame(document.getElementById("scissors").name, getComputerChoice(choice)); 
+        });
 
         function randomNum(num1,num2) {
             let res = Math.floor(Math.random(num1) * num2);
@@ -66,15 +82,15 @@
 
         
 
-        bestOfFive();
-        console.log("After " + i + " games, the score is: Player " + playerPts + " - " + computerPts + " Computer");
+     //   bestOfFive();
+   /*     console.log("After " + i + " games, the score is: Player " + playerPts + " - " + computerPts + " Computer");
         if(playerPts == 3 || playerPts > computerPts)  {
                     console.log("You won the game! Congratulations!");
                 } else if (computerPts == 3 || computerPts > playerPts) {
                     console.log("You lost, better luck next time!");
                 } else {
                     console.log("Draw game!");
-                }
+                } */
     </script>
 </body>
 </html>
