@@ -4,28 +4,46 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="gamescripts.js"></script>
     <title>Document</title>
 </head>
 <body>
-    <button id="rock" name="Rock">Rock</button>
-    <button id="paper" name="Paper">Paper</button>
-    <button id="scissors" name="Scissors">Scissors</button>
+    <button class="player" id="rock" name="Rock">Rock</button>
+    <button class="player" id="paper" name="Paper">Paper</button>
+    <button class="player" id="scissors" name="Scissors">Scissors</button>
+
+
+    <div class="result"></div>
+    <div class="winner"></div>
     <script>
         const choice = ['Rock', 'Paper', 'Scissors'];
-        let num1,num2;
-        const rock = document.querySelector('#rock');
-        const paper = document.querySelector('#paper');
-        const scissor = document.querySelector('#scissors');
+        let pChoice = document.querySelectorAll('.player')
+        const result = document.querySelector('.result');
+        const winner = document.querySelector('.winner');
+        let i = 0;
 
-        rock.addEventListener('click', () => {
-            rpsGame(document.getElementById("rock").name, getComputerChoice(choice)); //confirm user choice while also letting the cpu choose its own
+        pChoice.forEach(option => {
+            option.addEventListener('click', function () {
+                
+                rpsGame(this.innerText ,getComputerChoice(choice));
+                i++;
+                if (i === 10) {
+                    results();
+                }
+            })
         });
-        paper.addEventListener('click', () => {
-            rpsGame(document.getElementById("paper").name, getComputerChoice(choice)); 
-        });
-        scissor.addEventListener('click', () => {
-            rpsGame(document.getElementById("scissors").name, getComputerChoice(choice)); 
-        });
+
+        function results() {
+            result.innerHTML = "After " + i + " games, the score is: Player " + playerPts + " - " + computerPts + " Computer";
+        if(playerPts === 5 || playerPts > computerPts)  {
+                    winner.innerHTML = "You won the game! Congratulations!";
+                } else if (computerPts === 5 || computerPts > playerPts) {
+                    winner.innerHTML = "You lost, better luck next time!";
+                } else {
+                    winner.innerHTML = "Draw game!";
+                } 
+        }
+
 
         function randomNum(num1,num2) {
             let res = Math.floor(Math.random(num1) * num2);
@@ -68,29 +86,6 @@
             return game;
         }
 
-        let i;
-        function bestOfFive() {
-            for (i = 0; i < 5; i++) {
-                let playerChoice = prompt("Select between rock, paper or scissors. ");
-                let cpuChoice = getComputerChoice(choice);
-                rpsGame(playerChoice,cpuChoice);
-                if (playerPts == 3 || computerPts == 3) {
-                    break;
-                }
-            }
-        }
-
-        
-
-     //   bestOfFive();
-   /*     console.log("After " + i + " games, the score is: Player " + playerPts + " - " + computerPts + " Computer");
-        if(playerPts == 3 || playerPts > computerPts)  {
-                    console.log("You won the game! Congratulations!");
-                } else if (computerPts == 3 || computerPts > playerPts) {
-                    console.log("You lost, better luck next time!");
-                } else {
-                    console.log("Draw game!");
-                } */
     </script>
 </body>
 </html>
